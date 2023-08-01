@@ -9,6 +9,7 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,11 @@ const routes: Routes = [
             {path:'promesas',component:PromesasComponent,data:{title:'Promesas'}},
             {path:'rxjs',component:RxjsComponent,data:{title:'Rxjs'}},
             {path:'perfil',component:PerfilComponent,data:{title:'Perfil'}},
-            {path:'account-settings',component:AccountSettingsComponent,data:{title:'Ajustes'}}
+            {path:'account-settings',component:AccountSettingsComponent,data:{title:'Ajustes'}},
+            //matenimientos
+            {path:'usuarios',component:UsuariosComponent,data:{title:'Usuarios'}},
+            // {path:'hospitales',component:UsuariosComponent,data:{title:'Hospitales'}},
+            // {path:'medicos',component:UsuariosComponent,data:{title:'Medicos'}}
         ]
     },
 ];

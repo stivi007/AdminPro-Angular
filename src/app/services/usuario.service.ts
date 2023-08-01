@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, delay, map, tap } from "rxjs/operators";
 import { RegisterForm } from '../components/interfaces/register-form.interface';
 import { environment } from 'src/environments/environment';
 import { LoginForm } from '../components/interfaces/login-form.interface';
 import { of } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
+import { CargarUsuario } from '../components/interfaces/cargar.usuario.interface';
+import Swal from 'sweetalert2';
 
 const base_url = environment.base_url
 
@@ -26,6 +28,14 @@ export class UsuarioService {
     return this.usuario.uid || '';
   }
 
+  get headers(){
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    }
+  }
+
   logout(){
     localStorage.removeItem('token')
   }
@@ -40,7 +50,7 @@ export class UsuarioService {
     }).pipe(
       map((resp:any)=>{
         const {nombre,email,password,google,role,img='',uid} = resp.usuario
-        this.usuario=new Usuario(nombre,email,'',google,role,img,uid)
+        this.usuario = new Usuario(nombre,email,'',google,role,img,uid)
         localStorage.setItem('token',resp.token);
         return true;
       }),
@@ -58,11 +68,11 @@ export class UsuarioService {
                 )
   }
 
-  actualizarUsuario( data: { email: string, nombre: string, role:string } ) {
+  actualizarUsuario( data: { email: string, nombre: string, rol:string } ) {
 
     data = {
       ...data,
-      role: this.usuario.role || 'USER_ROLE'
+      rol: this.usuario.rol
     };
 
     return this.http.put(`${ base_url }/usuarios/${ this.uid }`, data, {
@@ -90,6 +100,26 @@ export class UsuarioService {
                       localStorage.setItem('token',resp.token)
                     })
                   )
+  }
+
+  cargarUsuarios(desde :number = 0){
+    return this.http.get<CargarUsuario>(`${base_url}/usuarios?desde=${desde}`,this.headers)
+                      .pipe(
+                        // delay(5000),
+                        map(resp=>{
+                          const usuarios = resp.usuarios.map(user=> new Usuario(user.nombre,user.email,'',user.google,user.rol,user.img,user.uid))
+                          
+                          return {
+                            total:resp.total,
+                            usuarios
+                          }
+                          
+                        })
+                      )
+  }
+
+  eliminarUsuario(usuario:Usuario){
+    return this.http.delete(`${base_url}/usuarios/${usuario.uid}`,this.headers)
   }
 
 }

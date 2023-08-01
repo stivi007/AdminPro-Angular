@@ -3,6 +3,10 @@
     cursor: pointer;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 #google-btn{
     align-items: center;
     display: flex;
@@ -17,4 +21,15 @@
 #dw-user-box-text-email {
     text-overflow: ellipsis;
     overflow: hidden;
+}
+.w100{
+    width: 100px;
+}
+.avatar{
+    border: 1px solid black;
+    width: 40px;
+    border-radius: 100%;
+}
+.w140{
+    width: 160px;
 }

@@ -9,23 +9,21 @@ export class Usuario {
         public email:string,
         public password?:string,
         public google?:boolean,
-        public role?:string,
+        public rol?:string,
         public img?:string,
         public uid?:string,
     ){}
 
     get imagenUrl(){
-
-        if(this.img.includes('https')){
+        if(!this.img){
+            return `${base_url}/uploads/usuarios/no-image`;
+        }else if(this.img.includes('https')){
             return this.img;
+        }else if(this.img){
+            return `${base_url}/uploads/usuarios/${this.img}`;
         }else{
-            if(this.img){
-                return `${base_url}/uploads/usuarios/${this.img}`
-            }else{
-                return `${base_url}/uploads/usuarios/no-image`
-            }
+            return `${base_url}/uploads/usuarios/no-image`;
         }
-
        
     }
 

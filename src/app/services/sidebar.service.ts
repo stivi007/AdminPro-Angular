@@ -31,6 +31,24 @@ export class SidebarService {
           url:'/dashboard/rxjs'
         }
       ]
+    },
+    {
+      title:'Mantenimiento',
+      icon:'mdi mdi-folder-lock-open',
+      submenu:[
+        {
+          titulo:'Usuarios',
+          url:'/dashboard/usuarios'
+        },
+        {
+          titulo:'Hospitales',
+          url:'/dashboard/hospitales'
+        },
+        {
+          titulo:'Medicos',
+          url:'/dashboard/medicos'
+        }
+      ]
     }
   ];
 
