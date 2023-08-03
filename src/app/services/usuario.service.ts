@@ -122,4 +122,10 @@ export class UsuarioService {
     return this.http.delete(`${base_url}/usuarios/${usuario.uid}`,this.headers)
   }
 
+  actualizarRolUsuario( usuario: Usuario ) {
+    
+    return this.http.put(`${ base_url }/usuarios/${ usuario.uid }`, usuario,this.headers);
+
+  }
+
 }

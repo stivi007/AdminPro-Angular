@@ -43,13 +43,14 @@
                         <tbody>
                             <tr *ngFor="let usuario of usuarios" class="text-center">
                                 <td>
-                                    <img [src]="usuario.imagenUrl" class="avatar" alt="">
+                                    <img [src]="usuario.imagenUrl" class="avatar pointer" (click)="abrirModal(usuario)">
                                 </td>
                                 <td>{{usuario.email}}</td>
                                 <td>{{usuario.nombre}}</td>
                                 <td>
                                     <select class="form-control w140"
-                                            [(ngModel)]="usuario.rol">
+                                            [(ngModel)]="usuario.rol"
+                                            (change)="cambiarRol(usuario)">
                                         <option value="ADMIN_ROLE">ADMIN_ROLE</option>
                                         <option value="USER_ROLE">USER_ROLE</option>
                                     </select>
