@@ -45,3 +45,8 @@
 .oculto{
     display: none;
 }
+
+.solo{
+    width: 250px;
+    height: 250px;
+}

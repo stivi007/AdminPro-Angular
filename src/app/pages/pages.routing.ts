@@ -10,6 +10,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { MedicoComponent } from './mantenimientos/medico/medico.component';
 
 
 const routes: Routes = [
@@ -27,8 +30,9 @@ const routes: Routes = [
             {path:'account-settings',component:AccountSettingsComponent,data:{title:'Ajustes'}},
             //matenimientos
             {path:'usuarios',component:UsuariosComponent,data:{title:'Usuarios'}},
-            // {path:'hospitales',component:UsuariosComponent,data:{title:'Hospitales'}},
-            // {path:'medicos',component:UsuariosComponent,data:{title:'Medicos'}}
+            {path:'hospitales',component:HospitalesComponent,data:{title:'Hospitales'}},
+            {path:'medicos',component:MedicosComponent,data:{title:'Medicos'}},
+            {path:'medico/:id',component:MedicoComponent,data:{title:'Medico'}}
         ]
     },
 ];
